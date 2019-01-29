@@ -40,7 +40,7 @@ import { ShoppingCartSummaryComponent } from './shoppingModule/components/shoppi
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
