@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -41,6 +42,53 @@ import { ShoppingCartSummaryComponent } from './shoppingModule/components/shoppi
   imports: [
     BrowserModule,
     AppRoutingModule,
+    RouterModule.forRoot([
+      {
+        path: '',
+        component: ProductsComponent
+      },
+      {
+        path: 'login',
+        component: LoginComponent
+      },
+      {
+        path: 'admin/products',
+        component: AdminProductsComponent,
+        canActivate: []
+      },
+      {
+        path: 'admin/orders',
+        component: AdminOrdersComponent
+      },
+      {
+        path: 'admin/products/add-new',
+        component: ProductFormComponent
+      },
+      {
+        path: 'admin/products/:id',
+        component: ProductFormComponent
+      },
+      {
+        path: 'products',
+        component: ProductsComponent,
+      },
+      {
+        path: 'shopping-cart',
+        component: ShoppingCartComponent
+      },
+      {
+        path: 'check-out',
+        component: CheckOutComponent
+      },
+      {
+        path: 'order-success/:id',
+        component: OrderSuccessComponent
+      },
+      {
+        path: 'my-orders',
+        component: MyOrdersComponent
+      }
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
