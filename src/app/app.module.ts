@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; // use ng-bootstrap
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -40,6 +41,7 @@ import { ShoppingCartSummaryComponent } from './shoppingModule/components/shoppi
     ShoppingCartSummaryComponent
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([
