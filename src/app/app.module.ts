@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; // use ng-bootstrap
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,8 @@ import { ProductsComponent } from './shoppingModule/components/products/products
 import { ShippingFormComponent } from './shoppingModule/components/shipping-form/shipping-form.component';
 import { ShoppingCartComponent } from './shoppingModule/components/shopping-cart/shopping-cart.component';
 import { ShoppingCartSummaryComponent } from './shoppingModule/components/shopping-cart-summary/shopping-cart-summary.component';
+import { CategoryService } from './sharedModule/services/category.service';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,7 @@ import { ShoppingCartSummaryComponent } from './shoppingModule/components/shoppi
   ],
   imports: [
     NgbModule,
+    HttpClientModule,
     BrowserModule,
     AppRoutingModule,
     RouterModule.forRoot([
@@ -92,7 +96,9 @@ import { ShoppingCartSummaryComponent } from './shoppingModule/components/shoppi
       }
     ])
   ],
-  providers: [],
+  providers: [
+    // CategoryService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
