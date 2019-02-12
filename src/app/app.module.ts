@@ -23,6 +23,7 @@ import { ShoppingCartComponent } from './shoppingModule/components/shopping-cart
 import { ShoppingCartSummaryComponent } from './shoppingModule/components/shopping-cart-summary/shopping-cart-summary.component';
 import { CategoryService } from './sharedModule/services/category.service';
 import { from } from 'rxjs';
+import { ProductsFilterByCatComponent } from './shoppingModule/components/products/products-filter-by-cat/products-filter-by-cat.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { from } from 'rxjs';
     ProductsComponent,
     ShippingFormComponent,
     ShoppingCartComponent,
-    ShoppingCartSummaryComponent
+    ShoppingCartSummaryComponent,
+    ProductsFilterByCatComponent
   ],
   imports: [
     NgbModule,

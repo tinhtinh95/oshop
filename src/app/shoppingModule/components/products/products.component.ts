@@ -13,13 +13,12 @@ export class ProductsComponent implements OnInit {
   // tslint:disable-next-line:no-input-rename
   category: string;
 
-  constructor(private catService: CategoryService, private route: ActivatedRoute) {
+  constructor(private route: ActivatedRoute) {
     this.route.queryParams.subscribe(params => { // hoac dung queryParamsMap => thay bang params.get('category')
       this.category = params['category'];
     });
   }
 
   ngOnInit() {
-    this.categories$ = this.catService.getCategories();
   }
 }
