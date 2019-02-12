@@ -1,3 +1,14 @@
-<p>
-  product-card works!
-</p>
+<div class="card h-100" *ngIf="product.title" >
+  <img class="card-img-top h-50"
+    alt="{{product.title}}">
+  <div class="card-body">
+    <h5 class="card-title">{{ product.title }}</h5>
+    <p class="card-text">{{ product.price  | currency: 'USD' }}</p>
+  </div>
+  <div style="padding: 0" class="card-footer">
+    <button>Add to cart</button>
+    <!-- <ng-template #displayQuantity>
+      <app-product-quantity [product]="product" [shopping-cart]="shoppingCart"></app-product-quantity>
+    </ng-template> -->
+  </div>
+</div>
