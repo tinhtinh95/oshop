@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from '../../../../../api-server/models/User';
 
 @Component({
   selector: 'app-bs-navbar',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bs-navbar.component.css']
 })
 export class BsNavbarComponent implements OnInit {
-
+  userInfo: User;
   constructor() { }
 
   ngOnInit() {

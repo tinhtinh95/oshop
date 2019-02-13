@@ -12,8 +12,4 @@ export class ProductService {
   getProducts() {
     return this.http.get(`${this.uri}`);
   }
-
-  adc(){
-    console.log('ddd');
-  }
 }

@@ -22,7 +22,6 @@ import { ShippingFormComponent } from './shoppingModule/components/shipping-form
 import { ShoppingCartComponent } from './shoppingModule/components/shopping-cart/shopping-cart.component';
 import { ShoppingCartSummaryComponent } from './shoppingModule/components/shopping-cart-summary/shopping-cart-summary.component';
 import { CategoryService } from './sharedModule/services/category.service';
-import { from } from 'rxjs';
 import { ProductsFilterByCatComponent } from './shoppingModule/components/products/products-filter-by-cat/products-filter-by-cat.component';
 
 @NgModule({
