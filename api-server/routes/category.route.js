@@ -10,7 +10,6 @@ catRoutes.route('/').get((req, res) => {
             console.log(err);
         }else {
             res.json(categories);
-            console.log(res);
         }
     });
 });
