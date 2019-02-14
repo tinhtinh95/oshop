@@ -12,7 +12,7 @@ let Product = new Schema({
         type: String
     },
     price: {
-        type: String
+        type: Number
     }
     
 });

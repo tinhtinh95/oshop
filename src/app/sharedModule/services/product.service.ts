@@ -12,4 +12,8 @@ export class ProductService {
   getProducts() {
     return this.http.get(`${this.uri}`);
   }
+
+  getProduct(title) {
+    return this.http.get(`${this.uri}/checkExist/${title}`);
+  }
 }

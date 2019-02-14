@@ -13,4 +13,16 @@ productRoutes.route('/').get((req, res) => {
     })
 });
 
+productRoutes.route('/checkExist/:title').get((req, res) => {
+    // console.log('ddd');
+    const title = req.params.title;
+    Product.findOne({title}).then(product => {
+        if(product) {
+            res.json(product);
+        }else {
+            res.status(404).send();
+        }
+    })
+});
+
 module.exports = productRoutes;

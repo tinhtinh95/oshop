@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap'; // use ng-bootstrap
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { DataTableModule } from 'angular-6-datatable';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -23,6 +24,8 @@ import { ShoppingCartComponent } from './shoppingModule/components/shopping-cart
 import { ShoppingCartSummaryComponent } from './shoppingModule/components/shopping-cart-summary/shopping-cart-summary.component';
 import { CategoryService } from './sharedModule/services/category.service';
 import { ProductsFilterByCatComponent } from './shoppingModule/components/products/products-filter-by-cat/products-filter-by-cat.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { from } from 'rxjs';
 
 @NgModule({
   declarations: [
@@ -47,8 +50,11 @@ import { ProductsFilterByCatComponent } from './shoppingModule/components/produc
   imports: [
     NgbModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
+    DataTableModule,
     RouterModule.forRoot([
       {
         path: '',
