@@ -16,8 +16,8 @@
         <ng-template #login>
             <a class="nav-link" routerLink="/login">Login</a>
         </ng-template>
-        <li ngbDropdown class="nav-item dropdown" *ngIf="userInfo else login" >
-          <a ngbDropdownToggle class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <li ngbDropdown class="nav-item dropdown" *ngIf="!userInfo else login" >
+          <a ngbDropdownToggle class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Username
           </a>
           <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="navbarDropdown">
