@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../../../sharedModule/services/product.service';
 import { Product } from '../../../../../api-server/models/Product';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-products',
@@ -10,14 +12,22 @@ import { Product } from '../../../../../api-server/models/Product';
 export class AdminProductsComponent implements OnInit {
 
   products: Product[];
+  isAddingSucess: Boolean;
+  successDescription;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, private route: ActivatedRoute) {
     this.productService.getProducts().subscribe((products: Product[]) => {
       this.products = products;
     });
    }
 
   ngOnInit() {
+    this.route.params.subscribe(params => {
+      if (params['result']) {
+        this.isAddingSucess = true;
+        this.successDescription = params['result'];
+      }
+    });
   }
 
 }

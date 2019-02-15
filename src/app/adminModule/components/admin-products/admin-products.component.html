@@ -1,6 +1,7 @@
 <div>
   <a routerLink="/admin/products/add-new" class="btn btn-primary"> New Product </a>
 </div>
+<div *ngIf="isAddingSucess"  class="alert alert-success">{{successDescription }}</div>
 <br>
 <input #query (keyup)="filter(query.value)" type="text" name="search" placeholder="Search..." class="form-control">
 <div>

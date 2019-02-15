@@ -25,7 +25,7 @@ import { ShoppingCartSummaryComponent } from './shoppingModule/components/shoppi
 import { CategoryService } from './sharedModule/services/category.service';
 import { ProductsFilterByCatComponent } from './shoppingModule/components/products/products-filter-by-cat/products-filter-by-cat.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { from } from 'rxjs';
+import { TitleValidators } from './common/validators/product.validators';
 
 @NgModule({
   declarations: [
@@ -48,7 +48,7 @@ import { from } from 'rxjs';
     ProductsFilterByCatComponent
   ],
   imports: [
-    NgbModule,
+  NgbModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -105,6 +105,8 @@ import { from } from 'rxjs';
   ],
   providers: [
     // CategoryService
+    TitleValidators,
+    
   ],
   bootstrap: [AppComponent]
 })

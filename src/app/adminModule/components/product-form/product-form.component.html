@@ -1,6 +1,6 @@
-<div class="row">
+<div class="row container">
   <div class="col-md-6">
-    <form [formGroup]="form" (ngSubmit)="save(f.value)">
+    <form [formGroup]="form" (ngSubmit)="save(form.value)">
       <div class="form-group">
         <label for="title">Title</label>
         <input 
@@ -9,8 +9,56 @@
           id="title"
           class="form-control"
         >
+        <div *ngIf="title.pending">Checking...</div>
+        <div *ngIf="title.touched && title.invalid" class="alert alert-danger">
+          <div *ngIf="title.errors.required">Title is required</div>
+          <div *ngIf="title.errors.shouldBeUnique">Title has been already</div>
+        </div>
       </div>
-      <button class="btn btn-primary">Save</button>
+      <div class="form-group">
+        <label for="price">Price</label>
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text">$</span>
+          </div>
+            <input 
+              formControlName="price"
+              type="number"
+              id="price"
+              class="form-control"
+            >
+        </div>
+        <div *ngIf="price.touched && price.invalid" class="alert alert-danger">
+          <div *ngIf="price.errors.required">Title is required</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select
+          formControlName="category"
+          type="number"
+          id="category"
+          class="form-control">
+            <option *ngFor="let category of cat$ | async"  value="{{category._id}}">{{category.name}}</option>
+          </select>
+        <div *ngIf="category.touched && category.invalid" class="alert alert-danger">
+          <div *ngIf="category.errors.required">Please choose category.</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="imageURL">Image URL</label>
+        <input 
+          formControlName="imageURL"
+          type="url"
+          id="imageURL"
+          class="form-control"
+        >
+        <div *ngIf="imageURL.touched && imageURL.invalid" class="alert alert-danger">
+          <div *ngIf="imageURL.errors.required">ImageURL is required</div>
+          <div *ngIf="imageURL.errors.pattern">Url is wrong</div>
+        </div>
+      </div>
+      <button class="btn btn-primary" [disabled]="form.invalid">Save</button>
     </form>
   </div>
   <!-- <div class="col-md-6">

@@ -16,4 +16,8 @@ export class ProductService {
   getProduct(title) {
     return this.http.get(`${this.uri}/checkExist/${title}`);
   }
+
+  saveProduct(product) {
+    return this.http.post(`${this.uri}/add`, product);
+  }
 }

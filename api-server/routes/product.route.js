@@ -20,9 +20,20 @@ productRoutes.route('/checkExist/:title').get((req, res) => {
         if(product) {
             res.json(product);
         }else {
-            res.status(404).send();
+            res.status(200).send();
         }
     })
 });
+
+productRoutes.route('/add').post((req, res) => {
+    let product = new Product(req.body);
+    product.save()
+        .then(product => {
+            res.status(200).json({product: `Product ${product.title} is added succesfully`});
+        })
+        .catch(err => {
+            res.status(400).send('Unable to save the new product to the database');
+        })
+})
 
 module.exports = productRoutes;

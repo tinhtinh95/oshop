@@ -1,14 +1,20 @@
 import { AbstractControl, ValidationErrors} from '@angular/forms';
 import { ProductService } from '../../sharedModule/services/product.service';
+import { map } from 'rxjs/operators';
 
 export class TitleValidators {
-    productService: ProductService;
-
-    shouldBeUnique(control: AbstractControl): Promise<ValidationErrors | null> {
-        return new Promise((resolve, reject) => {
-            this.productService.getProduct(control.value).toPromise().then(product => {
-                resolve(product);
-            }).catch(err => resolve(err));
-        });
+    static shouldBeUnique(productService: ProductService) {
+        return (control: AbstractControl): Promise<ValidationErrors | null> => {
+            return new Promise((resolve, reject) => {
+                productService.getProduct(control.value).pipe(map(res => res))
+                    .subscribe((products => {
+                        if (products) {
+                            resolve({shouldBeUnique: true});
+                        } else {
+                            resolve(null);
+                        }
+                    }));
+            });
+        };
     }
 }
