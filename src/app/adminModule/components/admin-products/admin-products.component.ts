@@ -30,4 +30,10 @@ export class AdminProductsComponent implements OnInit {
     });
   }
 
+  delete(idProduct) {
+    if (confirm('Are you sure to delete this product')) {
+      this.productService.deleteProduct(idProduct);
+    }
+  }
+
 }

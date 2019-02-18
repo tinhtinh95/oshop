@@ -34,6 +34,16 @@ productRoutes.route('/add').post((req, res) => {
         .catch(err => {
             res.status(400).send('Unable to save the new product to the database');
         })
-})
+});
+
+productRoutes.route('/delete/:id').get((req,res) => {
+    let id = req.params.id;
+    console.log(id);
+    Product.findOneAndDelete({_id: id})
+        .then(product => {
+            console.log(product);
+            res.status(200).json({rs: 'Delete success'});
+        })
+});
 
 module.exports = productRoutes;

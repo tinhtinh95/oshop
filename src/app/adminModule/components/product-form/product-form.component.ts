@@ -25,7 +25,7 @@ export class ProductFormComponent implements OnInit {
     category: new FormControl('', [
       Validators.required
     ]),
-    imageURL: new FormControl('', [
+    imageUrl: new FormControl('', [
       Validators.required,
       // tslint:disable-next-line:max-line-length
       Validators.pattern('^(http[s]?:\\/\\/(www\\.)?|ftp:\\/\\/(www\\.)?|www\\.){1}([0-9A-Za-z-\\.@:%_\+~#=]+)+((\\.[a-zA-Z]{2,3})+)(/(.)*)?(\\?(.)*)?')
@@ -52,8 +52,8 @@ export class ProductFormComponent implements OnInit {
   get category() {
     return this.form.get('category');
   }
-  get imageURL() {
-    return this.form.get('imageURL');
+  get imageUrl() {
+    return this.form.get('imageUrl');
   }
 
   save(product) {

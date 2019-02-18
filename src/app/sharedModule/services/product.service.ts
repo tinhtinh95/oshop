@@ -20,4 +20,13 @@ export class ProductService {
   saveProduct(product) {
     return this.http.post(`${this.uri}/add`, product);
   }
+
+  editProduct() {
+
+  }
+
+  deleteProduct(id) {
+    console.log(id);
+    return this.http.delete(`${this.uri}/delete/${id}`);
+  }
 }
