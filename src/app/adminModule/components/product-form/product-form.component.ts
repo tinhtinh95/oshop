@@ -4,7 +4,7 @@ import { TitleValidators } from 'src/app/common/validators/product.validators';
 import { ProductService } from '../../../sharedModule/services/product.service';
 import { CategoryService } from '../../../sharedModule/services/category.service';
 import { Product } from '../../.../../../../../api-server/models/Product';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-product-form',
@@ -13,11 +13,12 @@ import { Router } from '@angular/router';
 })
 export class ProductFormComponent implements OnInit {
   cat$;
+  id;
   form = new FormGroup({
     title: new FormControl('', [
       Validators.required,
     ],
-    TitleValidators.shouldBeUnique(this.productService).bind(TitleValidators)
+    // TitleValidators.shouldBeUnique(this.productService).bind(TitleValidators)
     ),
     price: new FormControl('', [
       Validators.required
@@ -35,9 +36,19 @@ export class ProductFormComponent implements OnInit {
   constructor(
     private productService: ProductService,
     private catService: CategoryService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
     ) {
     this.cat$ = catService.getCategories();
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.productService.getProductByID(this.id).subscribe(product => {
+      this.form.setValue({
+        title: product['title'],
+        price: product['price'],
+        category: product['category'],
+        imageUrl: product['imageUrl']
+      });
+    });
   }
 
   ngOnInit() {
@@ -58,12 +69,19 @@ export class ProductFormComponent implements OnInit {
 
   save(product) {
     if (product) {
-      this.productService.saveProduct(product)
+      if (this.id) {
+        console.log(this.id);
+        this.productService.editProduct(product, this.id)
         .subscribe(result => {
-          console.log(result);
+          this.router.navigate(['/admin/products', {result: result['product']}]);
+        });
+      } else {
+        this.productService.saveProduct(product)
+        .subscribe(result => {
           this.router.navigate(['/admin/products', {result: result['product']}]);
         })
       ;
+      }
     }
   }
 }

@@ -17,16 +17,20 @@ export class ProductService {
     return this.http.get(`${this.uri}/checkExist/${title}`);
   }
 
+  getProductByID(id) {
+    return this.http.get(`${this.uri}/get/${id}`);
+  }
+
   saveProduct(product) {
     return this.http.post(`${this.uri}/add`, product);
   }
 
-  editProduct() {
-
+  editProduct(product, id) {
+    console.log(product, id);
+    return this.http.post(`${this.uri}/edit/${id}`, product);
   }
 
   deleteProduct(id) {
-    console.log(id);
     return this.http.delete(`${this.uri}/delete/${id}`);
   }
 }

@@ -15,7 +15,6 @@ productRoutes.route('/').get((req, res) => {
 });
 
 productRoutes.route('/checkExist/:title').get((req, res) => {
-    console.log('ddd');
     const title = req.params.title;
     Product.findOne({title}).then(product => {
         if(product) {
@@ -57,16 +56,38 @@ productRoutes.route('/delete/:id').delete((req,res) => {
         })
 });
 
-// productRoutes.route('/getInfo/:id').get((req, res) => {
-//     console.log('ddd');
-//     const id = req.params.id;
-//     Product.findOne({_id: id}).then(product => {
-//         if(product) {
-//             res.json(product);
-//         }else {
-//             res.status(200).send();
-//         }
-//     })
-// });
+productRoutes.route('/get/:id').get((req, res) => {
+    const id = req.params.id;
+    if(!ObjectID.isValid(id)) {
+        return res.status(404).send('ID is invalid');
+    }
+    Product.findOne({_id: id}).then(product => {
+        if(product) {
+            res.json(product);
+        }else {
+            res.status(200).send();
+        }
+    }).catch(err => {
+        res.status(400).send('Cannot get product ', err);
+    })
+});
+
+productRoutes.route('/edit/:id').post((req, res) => {
+    let id = req.params.id;
+    console.log(id);
+    let product = new Product(req.body);
+    Product.findOneAndUpdate(product)
+        .then(product => {
+            if(!product){
+                console.log('dddd')
+            }else {
+                console.log('dddd')
+            }
+            // res.status(200).json({product: `Product ${product.title} is updated succesfully`});
+        })
+        .catch(err => {
+            res.status(400).send('Unable to edit this product');
+        })
+});
 
 module.exports = productRoutes;
