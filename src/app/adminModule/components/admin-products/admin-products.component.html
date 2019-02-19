@@ -1,7 +1,7 @@
 <div>
   <a routerLink="/admin/products/add-new" class="btn btn-primary"> New Product </a>
 </div>
-<div *ngIf="isAddingSucess"  class="alert alert-success">{{successDescription }}</div>
+<div *ngIf="isAddingSuccess || isDeleteSuccess"  class="alert alert-success">{{successDescription }}</div>
 <br>
 <input #query (keyup)="filter(query.value)" type="text" name="search" placeholder="Search..." class="form-control">
 <div>
@@ -14,7 +14,7 @@
           <th style="width: 50%">
             <mfDefaultSorter by="price">Price</mfDefaultSorter>
           </th>
-          <th>+
+          <th>
             Option
           </th>
       </tr>
