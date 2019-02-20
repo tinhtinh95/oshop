@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductService } from '../../../sharedModule/services/product.service';
 import { Product } from '../../../../../api-server/models/Product';
 import { ActivatedRoute } from '@angular/router';
-import { map } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class AdminProductsComponent implements OnInit {
 
   products: Product[] = [];
+  filtersProduct: Product[] = [];
   isAddingSuccess: Boolean;
   isDeleteSuccess: Boolean;
   successDescription;
@@ -31,7 +31,7 @@ export class AdminProductsComponent implements OnInit {
   }
    reloadData() {
     this.productService.getProducts().subscribe((products: Product[]) => {
-      this.products = products;
+      this.filtersProduct = this.products = products;
     });
   }
   delete(idProduct) {
@@ -45,4 +45,7 @@ export class AdminProductsComponent implements OnInit {
     }
   }
 
+  filter(words) {
+    this.products = this.filtersProduct.filter(p => p.title.toLowerCase().includes(words.toLowerCase()));
+  }
 }
