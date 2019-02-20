@@ -41,7 +41,8 @@ export class ProductFormComponent implements OnInit {
     ) {
     this.cat$ = catService.getCategories();
     this.id = this.route.snapshot.paramMap.get('id');
-    this.productService.getProductByID(this.id).subscribe(product => {
+    if (this.id) {
+      this.productService.getProductByID(this.id).subscribe(product => {
       this.form.setValue({
         title: product['title'],
         price: product['price'],
@@ -49,6 +50,7 @@ export class ProductFormComponent implements OnInit {
         imageUrl: product['imageUrl']
       });
     });
+  }
   }
 
   ngOnInit() {
