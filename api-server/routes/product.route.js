@@ -1,4 +1,5 @@
 const express = require('express');
+const _ = require('lodash');
 
 const Product = require('../models/Product');
 const productRoutes = express.Router();
@@ -41,10 +42,8 @@ productRoutes.route('/delete/:id').delete((req,res) => {
     if (!ObjectID.isValid(id)) {
         return res.status(404).send('ID is invalid');
     }
-    console.log(id);
     Product.findOneAndDelete({_id: id})
         .then(product => {
-            console.log(product);
             if(product){
                 res.status(200).json({result: `Product ${product.title} is deleted succesfully`});
             }else {
@@ -74,20 +73,14 @@ productRoutes.route('/get/:id').get((req, res) => {
 
 productRoutes.route('/edit/:id').post((req, res) => {
     let id = req.params.id;
-    console.log(id);
-    let product = new Product(req.body);
-    Product.findOneAndUpdate(product)
-        .then(product => {
-            if(!product){
-                console.log('dddd')
-            }else {
-                console.log('dddd')
-            }
-            // res.status(200).json({product: `Product ${product.title} is updated succesfully`});
-        })
-        .catch(err => {
-            res.status(400).send('Unable to edit this product');
-        })
+    // var body = _.pick(req.body, ['title','price', 'category','imageUrl']); // k co phia sau thi k update
+    let product = req.body; // khi new thi tao ra id moi nen k the update
+    Product.findOneAndUpdate({_id: id}, {$set:product}, {new: true}, (err, doc) => {
+        if (err) {
+            res.status(404).send('Cannot update this product ', err);
+        }
+        res.status(200).json({product: `Product ${product.title} is updated succesfully`});
+    })
 });
 
 module.exports = productRoutes;

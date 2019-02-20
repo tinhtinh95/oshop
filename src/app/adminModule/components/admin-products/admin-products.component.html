@@ -1,6 +1,7 @@
 <div>
   <a routerLink="/admin/products/add-new" class="btn btn-primary"> New Product </a>
 </div>
+<br>
 <div *ngIf="isAddingSuccess || isDeleteSuccess"  class="alert alert-success">{{successDescription }}</div>
 <br>
 <input #query (keyup)="filter(query.value)" type="text" name="search" placeholder="Search..." class="form-control">
@@ -24,8 +25,13 @@
           <td>{{product.title}}</td>
           <td>{{product.price}}</td>
           <td>
-            <a [routerLink]="['/admin/products/', product._id]">Edit</a> /
-            <a class="delete" (click)="delete(product._id)">Delete</a>
+            
+            <a [routerLink]="['/admin/products/', product._id]">
+              <span class="fa fa-edit"> Edit</span>
+            </a> /
+            <a class="delete" (click)="delete(product._id)" style="color: red">
+              <span class="fa fa-remove">Delete</span>
+            </a>
           </td>
       </tr>
       </tbody>

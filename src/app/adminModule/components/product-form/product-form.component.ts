@@ -73,6 +73,7 @@ export class ProductFormComponent implements OnInit {
         console.log(this.id);
         this.productService.editProduct(product, this.id)
         .subscribe(result => {
+          console.log(result);
           this.router.navigate(['/admin/products', {result: result['product']}]);
         });
       } else {
