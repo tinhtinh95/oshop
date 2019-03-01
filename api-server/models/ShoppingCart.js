@@ -9,7 +9,6 @@ let ShoppingCart = new Schema({
         type: Number,
         default: 0
     },
-    
 });
 
 module.exports = mongoose.model('ShoppingCart', ShoppingCart);

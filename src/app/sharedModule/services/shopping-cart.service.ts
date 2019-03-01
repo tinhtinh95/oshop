@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ShoppingCart } from '../../../../api-server/models/ShoppingCart';
 
 @Injectable({
   providedIn: 'root'
