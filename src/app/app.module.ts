@@ -22,7 +22,6 @@ import { ProductsComponent } from './shoppingModule/components/products/products
 import { ShippingFormComponent } from './shoppingModule/components/shipping-form/shipping-form.component';
 import { ShoppingCartComponent } from './shoppingModule/components/shopping-cart/shopping-cart.component';
 import { ShoppingCartSummaryComponent } from './shoppingModule/components/shopping-cart-summary/shopping-cart-summary.component';
-import { CategoryService } from './sharedModule/services/category.service';
 import { ProductsFilterByCatComponent } from './shoppingModule/components/products/products-filter-by-cat/products-filter-by-cat.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TitleValidators } from './common/validators/product.validators';

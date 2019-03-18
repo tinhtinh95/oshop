@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ShoppingCartService } from '../../../sharedModule/services/shopping-cart.service';
-import { ArrayCart } from '../../../../../api-server/models/ArrayCart';
 import { ShoppingCart } from '../../../../../api-server/models/ShoppingCart';
 
 @Component({
@@ -22,7 +21,6 @@ export class ShoppingCartComponent implements OnInit {
   get countItem() {
     let count = 0;
       this.shoppingCart$.forEach((element: ShoppingCart) => {
-        // tslint:disable-next-line:radix
         count += parseInt(element.quantity);
       });
     return count;
